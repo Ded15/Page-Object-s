@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MoneyTest {
     @Test
-    void shouldTransferMoneyFromSecondToFirstCardEnough() {
+    void shouldTransferMoneyFromSecondToFirstCardEnough() { //перевод с 1-й на 2-ю
         open("http://localhost:9999");
         var loginPage = new LoginPage();
 
@@ -19,7 +19,7 @@ public class MoneyTest {
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         verificationPage.validVerify(verificationCode);
 
-        var amount = 500;
+        var amount = 5000;
         var dashboardPage = new DashboardPage();
         var cardInfoTo = DataHelper.getCardInfoToFirst();
         var startCardBalance = dashboardPage.getStartBalance(cardInfoTo);
@@ -32,7 +32,7 @@ public class MoneyTest {
 
 
     @Test
-    void shouldTransferMoneyFromFirstToSecondCardEnough() {
+    void shouldTransferMoneyFromFirstToSecondCardEnough() { //перевод с 2-й на 1-ю
         open("http://localhost:9999");
         var loginPage = new LoginPage();
 
@@ -41,7 +41,7 @@ public class MoneyTest {
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         verificationPage.validVerify(verificationCode);
 
-        var amount = 500;//amount for transfer
+        var amount = 5000;//amount for transfer
         var dashboardPage = new DashboardPage();
         var cardInfoTo = DataHelper.getCardInfoToSecond();
         var startCardBalance = dashboardPage.getStartBalance(cardInfoTo);
@@ -54,7 +54,7 @@ public class MoneyTest {
 
 
     @Test
-    void shouldTransferMoneyFromSecondToFirstCardUnderZero() {
+    void shouldTransferMoneyFromSecondToFirstCardUnderZero() { //перевод всего баланса
         open("http://localhost:9999");
         var loginPage = new LoginPage();
 
@@ -63,7 +63,7 @@ public class MoneyTest {
         var verificationCode = DataHelper.getVerificationCodeFor(authInfo);
         verificationPage.validVerify(verificationCode);
 
-        var amount = -500;//amount for transfer
+        var amount = -10_000;//amount for transfer
         var dashboardPage = new DashboardPage();
         var cardInfoTo = DataHelper.getCardInfoToFirst(); // transfer to first from second card
         var startCardBalance = dashboardPage.getStartBalance(cardInfoTo);
@@ -75,7 +75,7 @@ public class MoneyTest {
     }
 
     @Test
-    void shouldTransferMoneyFromFirstToSecondCardZero() {
+    void shouldTransferMoneyFromFirstToSecondCardZero() { // превод 0 руб.
         open("http://localhost:9999");
         var loginPage = new LoginPage();
 
@@ -96,7 +96,7 @@ public class MoneyTest {
     }
 
     @Test
-    void shouldTransferMoneyFromWrongSecondToFirstCard() {
+    void shouldTransferMoneyFromWrongSecondToFirstCard() { //перевод с нулевым балансом
         open("http://localhost:9999");
         var loginPage = new LoginPage();
 
