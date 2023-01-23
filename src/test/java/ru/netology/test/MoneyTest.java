@@ -1,4 +1,4 @@
-package test;
+package ru.netology.test;
 
 import org.junit.jupiter.api.Test;
 import  ru.netology.data.DataHelper;
