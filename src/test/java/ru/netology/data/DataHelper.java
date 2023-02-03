@@ -2,6 +2,8 @@ package ru.netology.data;
 
 import lombok.Value;
 
+import java.util.Random;
+
 public class DataHelper {
     private DataHelper(){
     }
@@ -15,36 +17,32 @@ public class DataHelper {
     public static AuthInfo getAuthInfo(){
         return new AuthInfo("vasya", "qwerty123");
     }
-
-
     @Value
     public  static class VerificationCode{
     private String cod;
     }
-
-    public static VerificationCode getVerificationCodeFor(AuthInfo authInfo) {
+    public static VerificationCode getVerificationCode (AuthInfo authInfo) {
         return new VerificationCode("12345");
     }
     @Value
-    public static class CardInfoTo {
+    public static class CardInfo {
         private String cardIdTo;
-        private String cardIdFrom;
+        private String testId;
+    }
+    public static CardInfo getCardInfoToFirst() {
+        return new CardInfo("5559 0000 0000 0001", "92df3f1c-a033-48t6-8390-206f6b1f56c0");
     }
 
-    public static CardInfoTo getCardInfoToFirst() {
-        return new CardInfoTo("5559 0000 0000 0001", "5559 0000 0000 0002");
+    public static CardInfo getCardInfoToSecond() {
+        return new CardInfo ("5559 0000 0000 0002", "0f3f5c2a-249t-4c3d-8287-09f7a039391d");
     }
 
-    public static CardInfoTo getCardInfoToSecond() {
-        return new CardInfoTo("5559 0000 0000 0002", "5559 0000 0000 0001");
+    public static int generateValidAmount (int balance){
+        return new Random().nextInt(balance)+1;
     }
 
-    public static CardInfoTo getCardInfoWrongToFirst() {
-        return new CardInfoTo("5559 1000 0000 0001", "5559 1000 0000 0002");
-    }
-
-    public static CardInfoTo getCardInfoWrongToSecond() {
-        return new CardInfoTo("5559 1000 0000 0002", "5559 1000 0000 0001");
+    public static int generateInvalidAmount(int balance){
+        return Math.abs(balance)+new Random().nextInt(10000);
     }
 }
 
